@@ -4,11 +4,23 @@ import { Observable }                                   from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+// Not the place for this!
+let apiRoot: string = "http://localhost:8081";
+
 @Injectable()
 export class HttpService {
     constructor(private http: Http) { }
+    /**
+     * Alter request url to reference the correct API server.
+     *
+     * @param string url
+     *   A url without the domain prepended.
+     */
+    getApiUrl(url: string) {
+        return apiRoot + url;
+    }
     get(url: string, options?: RequestOptionsArgs) {
-    	return this.http.get(url, options);
+    	return this.http.get(this.getApiUrl(url), options);
     }
     /**
      * Issue post request and return raw http response in observable.
@@ -27,13 +39,13 @@ export class HttpService {
 	 *	       );
 	 */
     post(url: string, body: any, options?: RequestOptionsArgs) {
-    	return this.http.post(url, body, options)
+    	return this.http.post(this.getApiUrl(url), body, options)
     }
     patch(url: string, body: any, options?: RequestOptionsArgs) {
-        return this.http.patch(url, body, options)
+        return this.http.patch(this.getApiUrl(url), body, options)
     }
     delete(url: string, options?: RequestOptionsArgs) {
-        return this.http.delete(url, options);
+        return this.http.delete(this.getApiUrl(url), options);
     }
     /**
      * Serialize body and issue post request with 'applicaton/json', 
