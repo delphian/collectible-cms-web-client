@@ -1,5 +1,6 @@
 // Core
-import { NgModule }                      from '@angular/core';
+import { NgModule,
+         ValueProvider }                 from '@angular/core';
 import { BrowserModule }                 from '@angular/platform-browser';
 import { FormsModule }                   from '@angular/forms';
 import { HttpModule }                    from '@angular/http';
@@ -36,6 +37,11 @@ import { UserCollectibles }              from './components/users/collectibles/c
 import { UsersTable }                    from './components/users/table/table.component';
 import { FilesUploadComponent }          from './components/files/upload/upload.component';
 import { Thumbnail as ImagesThumbnail }  from './components/files/thumbnail/thumbnail.component';
+
+const WINDOW_PROVIDER: ValueProvider = {
+    provide: Window,
+    useValue: window
+};
 
 @NgModule({
     imports: [
@@ -75,7 +81,8 @@ import { Thumbnail as ImagesThumbnail }  from './components/files/thumbnail/thum
         UsersTable     
     ],
     providers: [
-        appRoutingProviders
+        appRoutingProviders,
+        WINDOW_PROVIDER
     ],
     bootstrap: [ AppComponent ]
 })

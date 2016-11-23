@@ -13,16 +13,19 @@ must be used to provide the back end.
 ## Installation
 
 #### Install global node packages:
-* 'gulp' will be used to build the project.``npm install gulp -g` 
+* `npm install gulp -g`. 'gulp' will be used to build the project
 
-#### Clone repository and install packages:
+#### Clone repository, install packages, build client:
 * `git clone https://github.com/delphian/collectible-cms-web-client.git`
 * `cd collectible-cms-web-client`
 * `npm install`
+* `gulp`
 
-#### Customize the configuration files
+#### Change API root url in index.html
+* `vi ./dist/index.html` change window.apiRoot value.
 
-## Usage
+## Launch Server (client)
+* `node server.js` or `forever start server.js`
 
 ## Sublime Text 3 Support
 

@@ -1,11 +1,8 @@
-import { Injectable }									from '@angular/core';
+import { Injectable }				        from '@angular/core';
 import { Http, Headers, Response, RequestOptionsArgs }  from '@angular/http';
 import { Observable }                                   from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-
-// Not the place for this!
-let apiRoot: string = "http://localhost:8081";
 
 @Injectable()
 export class HttpService {
@@ -17,7 +14,7 @@ export class HttpService {
      *   A url without the domain prepended.
      */
     getApiUrl(url: string) {
-        return apiRoot + url;
+        return window['apiRoot'] + url;
     }
     get(url: string, options?: RequestOptionsArgs) {
     	return this.http.get(this.getApiUrl(url), options);
